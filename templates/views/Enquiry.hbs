@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Example of Auto Loading Bootstrap Modal on Page Load</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+    <script>
+       function addInputs(elm) {
+      var result = document.querySelector('#result');
+      result.innerHTML = '';
+      for (var i = 1; i <= parseInt(elm.value); i++) {
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = '<input type="text" name="nam" placeholder="Enter name of adult' + i + '"/>';
+        result.appendChild(wrapper);
+      }
+    }
+    function addInput(elm) {
+      var result = document.querySelector('#res');
+      result.innerHTML = '';
+      for (var i = 1; i <= parseInt(elm.value); i++) {
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = '<input type="text" placeholder="Enter name of child'+ i + '"/>';
+        result.appendChild(wrapper);
+      }
+    }
+    </script>
+</head>
+<body>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form action = "/offerdata" method = "POST">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title text-left"><b>Traveller Details</b></h2>
+            <div class="text-right">
+                <button type="button btn btn-primary" class="close" data-dismiss="modal">&times;</button>
+              </div>
+          </div>
+          <div class="modal-body">
+            <p><b>DATES</b></p>
+            <div class="container">
+              <div class="input-daterange input-group" id="datepicker">
+                  <input type="text" name="from" placeholder="From date"/>
+                  <span><b>to</b></span>
+                  <input type="text" name="to" placeholder="To date"/>
+              </div>
+            </div><br>            
+            <p> <b>ADULTS </b><br>IMPORTANT: Enter your name as it is mentioned on your passport or any government approved ID. </p>
+            <input type="text" onblur="addInputs(this)" placeholder="Select No. of Adults" name ="nadult" />
+            <input type ="button" value="set" onclick="addInputs(elm)">
+            <div id="result"></div><br>
+            <p><b>CHILD </b></p>
+            <input type="text" onblur="addInput(this)" placeholder="Select No. of Children"name ="nchild" />
+            <input type ="button" value="set" onclick="addInput(elm)">
+            <div id="res"></div><br>
+            <h3><b>Booking details will be sent to</b></h3>
+            <p>Your ticket and flights information will be sent here.</p>
+            <h5>Mobile No.</h5>
+            <input type="text" placeholder="Enter a mobile no." name ="nmobile"/>
+            <input type="text" placeholder="Enter a mobile no."/>
+            <h5>Email ID</h5>
+            <input type="text" placeholder="Enter a email id." name="nemail"/>
+            <div class="form-group">
+              <label for="message"><b>Message:</b></label>
+              <textarea class="form-control" rows="5" id="comment"></textarea>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">SEND DETAILS</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
